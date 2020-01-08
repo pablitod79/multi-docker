@@ -2,12 +2,11 @@ language: generic
 sudo: required
 services:
     - docker
+before_install:
+    - docker build -t pdigenaro/react-test -f ./client/Dockerfile.dev .
 
-#before_install:
- #   - docker build -t pdigenaro/react-test -f ./client/Dockerfile.dev .
-
-#script:
- #   - docker run pdigenaro/react-test npm test -- --coverage
+script:
+    - docker run pdigenaro/react-test npm test -- --coverage
 
 after_success:
     - docker build -t pdigenaro/multi-client -f ./client
