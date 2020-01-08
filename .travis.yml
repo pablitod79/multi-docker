@@ -6,7 +6,7 @@ before_install:
 - docker build -t pdigenaro/react-test -f ./client/Dockerfile.dev .
 
 script:
-    - docker run -e CI=true pdigenaro/react-test npm test
+    - docker run pdigenaro/react-test npm test -- --coverage
 
 after_success:
     - docker build -t pdigenaro/multi-client -f ./client
